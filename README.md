@@ -18,3 +18,7 @@
 2. 不固定最快boss寻路(直通:深度优先)
    > 英雄房间与boss房间比较 x距离 y距离决定去往哪
 3. 最慢boss寻路(全图:广度优先)
+
+# 训练模型
+python train.py --img 416 --batch 16 --epoch 100 --data data/coco128.yaml --weights models/yolov5s.pt
+

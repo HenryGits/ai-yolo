@@ -5,13 +5,13 @@ import cv2
 import numpy as np
 import torch
 
-from dnf.utils.general import (
+from cust_utils.general import (
     non_max_suppression, scale_coords,
     plot_one_box)
 from getkeys import key_check
 from grabscreen import grab_screen
 from models.experimental import attempt_load
-from utils.torch_utils import time_synchronized
+from cust_utils.torch_utils import time_synchronized
 
 
 def letterbox(img, new_shape=(640, 640), color=(114, 114, 114), auto=False, scaleFill=False, scaleup=True):
@@ -48,9 +48,9 @@ def letterbox(img, new_shape=(640, 640), color=(114, 114, 114), auto=False, scal
 
 
 if __name__ == '__main__':
-    weights = "C:\\Code\\ai-yolo\\runs\\train\\exp8\\weights\\best.pt"
+    weights = "C:\\Code\\ai-yolo\\runs\\train\\exp\\weights\\best.pt"
     device = torch.device("cuda:0") if torch.cuda.is_available() else torch.device("cpu")
-    model = attempt_load(weights, map_location=device)  # load FP32 model
+    model = attempt_load(weights, device=device)  # load FP32 model
     window_size = (0, 0, 1200, 750)
     last_time = time.time()
     for i in list(range(5))[::-1]:
