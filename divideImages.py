@@ -2,7 +2,7 @@ import os
 from os.path import splitext, basename, join
 
 import numpy as np
-
+from json2yolo import ds_dir
 
 class DivideImages():
 
@@ -62,6 +62,5 @@ class DivideImages():
 
 
 if __name__ == '__main__':
-    yolov5_dir = "C:\\Code\\ai-yolo\\data\\dataset\\jianhun"
     # 参数1：收集的图片文件，参数2：生成训练集和测试集文件的路径
-    divide = DivideImages(join(yolov5_dir, 'images'), yolov5_dir)
+    divide = DivideImages(join(ds_dir, 'images'), ds_dir)

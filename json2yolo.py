@@ -2,13 +2,14 @@ import json
 import os
 from os.path import join
 
+from cust_utils.constant import ds_dir
+
 """
 标注信息转yolo可识别的信息
 """
 
 name2id = {'hero': 0, 'small_map': 1, "monster": 2, 'money': 3, 'material': 4, 'door': 5, 'BOSS': 6, 'box': 7,
            'options': 8}
-ds_dir = "C:\\Code\\ai-yolo\\data\\dataset\\jianhun"
 
 
 def convert(img_size, box):

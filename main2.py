@@ -6,6 +6,7 @@ import numpy as np
 import torch
 
 import directkeys
+from cust_utils.constant import weights
 from direction_move import move
 from directkeys import ReleaseKey
 from getkeys import key_check
@@ -13,7 +14,7 @@ from grabscreen import grab_screen
 from models.experimental import attempt_load
 # from skill_recgnize import skill_rec
 from small_recgonize import current_door
-from utils.general import (
+from cust_utils.general import (
     non_max_suppression, scale_coords,
     xyxy2xywh)
 
@@ -54,9 +55,9 @@ def letterbox(img, new_shape=(640, 640), color=(114, 114, 114), auto=False, scal
 
 
 # 设置所有用到的参数
-weights = "C:\\Code\\ai-yolo\\runs\\train\\exp8\\weights\\best.pt"  # yolo5 模型存放的位置
+# weights = "C:\\Code\\ai-yolo\\runs\\train\\exp8\\weights\\best.pt"  # yolo5 模型存放的位置
 device = torch.device("cuda:0") if torch.cuda.is_available() else torch.device("cpu")
-model = attempt_load(weights, map_location=device)  # load FP32 model
+model = attempt_load(weights, device=device)  # load FP32 model
 window_size = (0, 0, 1280, 800)  # 截屏的位置
 img_size = 640  # 输入到yolo5中的模型尺寸
 paused = False
@@ -402,7 +403,7 @@ while True:
                     #     action_cache = move(direct="RIGHT", action_cache=action_cache, press_delay=press_delay,
                     #                     release_delay=release_delay)
 
-                    #没有识别到 则向右走
+                    # 没有识别到 则向右走
                     action_cache = move(direct="RIGHT", action_cache=action_cache, press_delay=press_delay,
                                         release_delay=release_delay)
                     # break
